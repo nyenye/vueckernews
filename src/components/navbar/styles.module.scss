@@ -1,0 +1,79 @@
+@import "@/styles/variables.scss";
+
+.navbar {
+  text-align: center;
+  padding: 0.75em;
+  background-color: $primary-color;
+
+  a {
+    text-decoration: none;
+  }
+
+  & > :global(.logo) {
+    h1 {
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+  }
+
+  & > :global(.links) {
+    & > a {
+      color: $text-color;
+    }
+    & > a:hover {
+      color: $white-color;
+    }
+
+    & > a:global(.router-link-exact-active) {
+      color: $white-color;
+    }
+  }
+
+  & > :global(.login) {
+    margin-top: 1em;
+
+    & > a {
+      color: $text-color;
+
+      &:hover {
+        color: $white-color;
+      }
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+
+    & > :global(.logo) {
+      h1 {
+        margin: 0;
+        margin-right: 1em;
+      }
+    }
+
+    & > :global(.login) {
+      margin-left: auto;
+    }
+
+    & > :global(.login) {
+      margin-top: 0em;
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}

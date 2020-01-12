@@ -1,0 +1,7 @@
+export const A_FETCH_TOP_ITEM_IDS = "A_FETCH_TOP_ITEM_IDS";
+
+export const A_FETCH_NEWEST_ITEM_IDS = "A_FETCH_NEWEST_ITEM_IDS";
+
+export const A_FETCH_ITEM_BY_ID = "A_FETCH_ITEM_BY_ID";
+
+export const A_FETCH_ITEMS_BY_IDS = "A_FETCH_ITEMS_BY_IDS";

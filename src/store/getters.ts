@@ -1,0 +1,3 @@
+export const G_GET_TOP_ITEMS = "G_GET_TOP_ITEMS";
+
+export const G_GET_NEWEST_ITEMS = "G_GET_NEWEST_ITEMS";

@@ -1,0 +1,71 @@
+@import "@/styles/variables.scss";
+
+.item-preview {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+
+  padding: 0.5em 1em;
+
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  &:first-child {
+    padding-top: 1em;
+  }
+
+  :global(.position) {
+    margin-right: 1em;
+    span {
+      font-size: 1.25em;
+      color: $primary-color;
+    }
+  }
+
+  :global(.content) {
+    :global(.headline) {
+      h3 {
+        margin: 0;
+        font-size: 1.2em;
+        font-weight: normal;
+
+        a {
+          text-decoration: none;
+          color: $small-text-color;
+
+          &:hover {
+            color: $primary-color;
+          }
+        }
+
+        span {
+          font-size: 0.8em;
+        }
+      }
+    }
+    :global(.meta-data) {
+      p {
+        font-size: 0.9em;
+        margin: 0;
+        margin-top: 0.3em;
+        color: $small-text-color;
+      }
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}

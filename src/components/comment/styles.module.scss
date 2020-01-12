@@ -1,0 +1,40 @@
+@import "@/styles/variables.scss";
+
+.comments {
+  margin-left: 0em;
+
+  div:global(.comment) {
+    padding-left: 1em;
+    border-left: 1px solid $primary-color;
+  }
+
+  div:global(.divider) {
+    height: 1px;
+    width: 100%;
+    background-color: $primary-color;
+  }
+
+  a {
+    text-decoration: none;
+    color: $primary-color;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .comments {
+    margin-left: 1em;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}

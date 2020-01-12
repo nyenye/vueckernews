@@ -1,0 +1,9 @@
+@import "@/styles/variables.scss";
+
+.top-items {
+  background-color: $white-color;
+
+  div:global(.load-more) {
+    padding: 1em;
+  }
+}
