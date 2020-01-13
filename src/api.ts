@@ -1,6 +1,6 @@
 export const HACKERNEWS_URL: string = "https://hacker-news.firebaseio.com/v0";
 
-export const ALGOLIA_URL: string = "http://hn.algolia.com/api/v1/";
+export const ALGOLIA_URL: string = "https://hn.algolia.com/api/v1/";
 
 export const TOP_STORIES_ENDPOINT: string = "topstories.json";
 
