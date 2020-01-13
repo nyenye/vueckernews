@@ -72,4 +72,6 @@ const ItemDetails = createComponent({
   }
 });
 
+export default ItemDetails;
+
 export { ItemDetails };
