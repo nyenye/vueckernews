@@ -37,14 +37,14 @@ const useItemList = () =>
 
         if (ids.value.length > 0 && items.value[ids.value[0]] === undefined) {
           return (
-            <div id="top" class={styles["top-items-empty"]}>
+            <div id="item-list" class={styles["item-list-empty"]}>
               <Spinner line-bg-color="#2c3e50" line-fg-color="#42b983" />
             </div>
           );
         }
 
         return (
-          <div id="top" class={styles["top-items"]}>
+          <div id="item-list" class={styles["item-list"]}>
             {ids.value.map((id: number, index: number) => {
               if (!renderNextItem) {
                 return null;

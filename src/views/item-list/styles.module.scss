@@ -1,6 +1,6 @@
 @import "@/styles/variables.scss";
 
-.top-items {
+.item-list {
   background-color: $white-color;
 
   div:global(.load-more) {
@@ -8,6 +8,6 @@
   }
 }
 
-.top-items-empty {
+.item-list-empty {
   padding: 1em;
 }
