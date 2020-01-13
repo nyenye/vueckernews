@@ -41,9 +41,7 @@ const setCurrentDetails: Mutation<HackernewsState> = (
   state: HackernewsState,
   itemDetails: Item | null
 ): void => {
-  if (itemDetails !== null) {
-    state.currentDetails = itemDetails as Item;
-  }
+  state.currentDetails = itemDetails;
 };
 
 const setItems: Mutation<HackernewsState> = (

@@ -1,20 +1,28 @@
 // Vue
 import { createComponent } from "@vue/composition-api";
 // Hooks
-import { useStore, useHackernewsGetCurrentDetails } from "@/hooks";
+import { useStore, useHackernewsItemDetails } from "@/hooks";
+// Types
+import { UseHackernewsItemDetailsReturn } from "@/types";
+
 // CSS
 import styles from "@/views/item-details/styles.module.scss";
 // Components
 import Spinner from "vue-simple-spinner";
 import { Comment } from "@/components";
 
-const ItemDetails = createComponent({
-  setup(props, context) {
-    const {
-      params: { id }
-    } = context.root.$route;
+interface ItemDetailsProps {
+  id: number;
+}
 
-    const itemId: number = parseInt(id);
+const ItemDetails = createComponent<ItemDetailsProps, {}>({
+  props: {
+    id: {
+      required: true
+    }
+  },
+  setup(props, context) {
+    const { id } = props;
 
     const store = useStore();
 
@@ -23,12 +31,12 @@ const ItemDetails = createComponent({
       urlHost,
       date,
       hasChildren
-    } = useHackernewsGetCurrentDetails(store, itemId);
+    }: UseHackernewsItemDetailsReturn = useHackernewsItemDetails(store, id);
 
     return () => {
-      if (current.value === null || current.value.id !== itemId) {
+      if (current.value === null || current.value.id !== id) {
         return (
-          <div id="details" class={styles["item-details"]} item-id={itemId}>
+          <div id="details" class={styles["item-details"]} item-id={id}>
             <Spinner line-bg-color="#2c3e50" line-fg-color="#42b983" />
           </div>
         );
@@ -49,7 +57,7 @@ const ItemDetails = createComponent({
         );
 
       return (
-        <div id="details" class={styles["item-details"]} item-id={itemId}>
+        <div id="details" class={styles["item-details"]} item-id={id}>
           {titleHtml}
 
           <p class="meta-data">{`${score} points by ${by} | ${date.value} | ${descendants} comments`}</p>

@@ -8,7 +8,7 @@ import { useStore } from "@/hooks";
 import { NS_HACKERNEWS } from "@/store/namespaces";
 import { M_SET_CURRENT_DETAILS } from "@/store/mutations";
 // Hooks
-import { useHackernewsTopItems, useHackernewsNewestItems } from "@/hooks";
+import { useHackernewsTopItemList, useHackernewsNewestItemList } from "@/hooks";
 // Routes
 import { ROUTE_TOP, ROUTE_NEWEST, ROUTE_ITEM_DETAILS } from "@/router/routes";
 // Components
@@ -21,14 +21,14 @@ const routes = [
     ...ROUTE_TOP,
     component: useItemList(),
     props: {
-      hook: useHackernewsTopItems
+      hook: useHackernewsTopItemList
     }
   },
   {
     ...ROUTE_NEWEST,
     component: useItemList(),
     props: {
-      hook: useHackernewsNewestItems
+      hook: useHackernewsNewestItemList
     }
   },
   {
@@ -36,37 +36,45 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(
+    component: () => {
+      return import(
         /* webpackChunkName: "newest" */ "../views/item-details/item-details"
-      )
+      );
+    },
+    props: (route: Route) => {
+      return { id: parseInt(route.params.id) };
+    }
   }
 ];
 
 const router = new VueRouter({
   mode: "history",
-  routes: routes as RouteConfig[],
+  routes: routes as Array<RouteConfig>,
   scrollBehavior: () => ({ x: 0, y: 0 })
 });
 
 router.beforeEach((to: Route, from: Route, next: Function) => {
-  if (to.name !== ROUTE_ITEM_DETAILS.name) return next();
+  // Route "item-details"
+  if (to.name === ROUTE_ITEM_DETAILS.name) {
+    const id = parseInt(to.params.id);
 
-  const id = parseInt(to.params.id);
+    const store = useStore();
 
-  const store = useStore();
+    if (
+      store.state.hackernews.currentDetails !== null &&
+      store.state.hackernews.currentDetails.id === id
+    )
+      return next();
 
-  if (
-    store.state.hackernews.currentDetails !== null &&
-    store.state.hackernews.currentDetails.id === id
-  )
-    return next();
-
-  if (store.state.hackernews.items[id] !== undefined) {
-    store.commit(
-      `${NS_HACKERNEWS}/${M_SET_CURRENT_DETAILS}`,
-      store.state.hackernews.items[id]
-    );
+    if (store.state.hackernews.items[id] !== undefined) {
+      store.commit(
+        `${NS_HACKERNEWS}/${M_SET_CURRENT_DETAILS}`,
+        store.state.hackernews.items[id]
+      );
+    }
+  } else if (from.name === ROUTE_ITEM_DETAILS.name) {
+    const store = useStore();
+    store.commit(`${NS_HACKERNEWS}/${M_SET_CURRENT_DETAILS}`, null);
   }
 
   next();

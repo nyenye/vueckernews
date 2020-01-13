@@ -1,7 +1,7 @@
 // Vue
 import { createComponent } from "@vue/composition-api";
 // Typescript
-import { Item } from "@/types";
+import { Item, UseHackernewsItemListReturn } from "@/types";
 // Hooks
 import { useStore } from "@/hooks";
 // CSS
@@ -25,7 +25,7 @@ const useItemList = () =>
       const { hook } = props;
 
       const store = useStore();
-      const { ids, items, loadMore } = hook(store);
+      const { ids, items, loadMore }: UseHackernewsItemListReturn = hook(store);
 
       return () => {
         let renderNextItem = true;

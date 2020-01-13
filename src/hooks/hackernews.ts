@@ -1,6 +1,11 @@
-import { reactive, computed, onMounted, Ref } from "@vue/composition-api";
+import { computed, onMounted } from "@vue/composition-api";
 // TypeScript
-import { MyStore, Item } from "@/types";
+import {
+  MyStore,
+  Item,
+  UseHackernewsItemDetailsReturn,
+  UseHackernewsItemListReturn
+} from "@/types";
 // Vuex
 import { NS_HACKERNEWS } from "@/store/namespaces";
 import { G_GET_TOP_ITEMS, G_GET_NEWEST_ITEMS } from "@/store/getters";
@@ -12,7 +17,9 @@ import {
 } from "@/store/actions";
 import dayjs from "dayjs";
 
-export const useHackernewsTopItems = (store: MyStore) => {
+export const useHackernewsTopItemList = (
+  store: MyStore
+): UseHackernewsItemListReturn => {
   const ids = computed(() => store.state.hackernews.topIds);
 
   const items = computed(() => {
@@ -39,7 +46,9 @@ export const useHackernewsTopItems = (store: MyStore) => {
   return { ids, items, loadMore };
 };
 
-export const useHackernewsNewestItems = (store: MyStore) => {
+export const useHackernewsNewestItemList = (
+  store: MyStore
+): UseHackernewsItemListReturn => {
   const ids = computed(() => store.state.hackernews.newestIds);
 
   const items = computed(() => {
@@ -66,10 +75,10 @@ export const useHackernewsNewestItems = (store: MyStore) => {
   return { ids, items, loadMore };
 };
 
-export const useHackernewsGetCurrentDetails = (
+export const useHackernewsItemDetails = (
   store: MyStore,
   itemId: number
-) => {
+): UseHackernewsItemDetailsReturn => {
   const current = computed(() => {
     return store.state.hackernews.currentDetails;
   });
@@ -99,5 +108,10 @@ export const useHackernewsGetCurrentDetails = (
     });
   });
 
-  return { current, urlHost, date, hasChildren };
+  return {
+    current,
+    urlHost,
+    date,
+    hasChildren
+  };
 };
