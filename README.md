@@ -1,5 +1,9 @@
 # vueckernews
 
+## Live demo
+
+[Vueckernews site deployed with now.sh](https://vueckernews.now.sh/)
+
 ## Screenshots
 
 ![screenshot 1](./screenshot-1.jpg)
