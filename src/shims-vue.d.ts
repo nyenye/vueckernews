@@ -3,6 +3,8 @@ declare module "*.vue" {
   export default Vue;
 }
 
+declare module "vue-simple-spinner";
+
 declare module "*.module.css" {
   const classes: { readonly [key: string]: string };
   export default classes;

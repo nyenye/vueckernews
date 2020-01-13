@@ -1,14 +1,11 @@
 // Vue
 import { createComponent } from "@vue/composition-api";
-// Dates
-import dayjs from "dayjs";
-// Typescript
-import { Item } from "@/types";
 // Hooks
 import { useStore, useHackernewsGetCurrentDetails } from "@/hooks";
 // CSS
 import styles from "@/views/item-details/styles.module.scss";
 // Components
+import Spinner from "vue-simple-spinner";
 import { Comment } from "@/components";
 
 const ItemDetails = createComponent({
@@ -32,7 +29,7 @@ const ItemDetails = createComponent({
       if (current.value === null || current.value.id !== itemId) {
         return (
           <div id="details" class={styles["item-details"]} item-id={itemId}>
-            <p>Loading...</p>
+            <Spinner line-bg-color="#2c3e50" line-fg-color="#42b983" />
           </div>
         );
       }
@@ -40,7 +37,7 @@ const ItemDetails = createComponent({
       const { title, by, url, score, descendants, text } = current.value;
 
       const titleHtml =
-        urlHost !== null ? (
+        urlHost.value !== null ? (
           <a href={url} class="title">
             <h1>
               {title}
@@ -58,20 +55,21 @@ const ItemDetails = createComponent({
           <p class="meta-data">{`${score} points by ${by} | ${date.value} | ${descendants} comments`}</p>
 
           {text.length > 0 && (
-            <div class="content">
-              <p>{text}</p>
-            </div>
+            <div class="content" domPropsInnerHTML={text}></div>
           )}
 
           <div class="divider" />
 
-          {hasChildren.value && (
+          {(hasChildren.value && (
             <Comment level={0} parentItem={current.value} />
-          )}
+          )) ||
+            (descendants > 0 && (
+              <Spinner line-bg-color="#2c3e50" line-fg-color="#42b983" />
+            ))}
         </div>
       );
     };
   }
 });
 
-export default ItemDetails;
+export { ItemDetails };

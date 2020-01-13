@@ -15,9 +15,9 @@ export const Navbar = createComponent({
           {" | "}
           <router-link to="/newest">Newest</router-link>
         </div>
-        <div class="login">
+        {/* <div class="login">
           <a href="#login">Login</a>
-        </div>
+        </div> */}
       </div>
     );
   }

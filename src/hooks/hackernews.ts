@@ -13,9 +13,9 @@ import {
 import dayjs from "dayjs";
 
 export const useHackernewsTopItems = (store: MyStore) => {
-  const topIds = computed(() => store.state.hackernews.topIds);
+  const ids = computed(() => store.state.hackernews.topIds);
 
-  const topItems = computed(() => {
+  const items = computed(() => {
     return store.getters[`${NS_HACKERNEWS}/${G_GET_TOP_ITEMS}`] as {
       [key: number]: Item;
     };
@@ -24,7 +24,7 @@ export const useHackernewsTopItems = (store: MyStore) => {
   const loadMore = (lastRenderedItem: number) => {
     const itemsToLoad = 50;
 
-    const idsToFetch = topIds.value.filter(
+    const idsToFetch = ids.value.filter(
       (_, index: number) =>
         index >= lastRenderedItem && index < lastRenderedItem + itemsToLoad
     );
@@ -36,13 +36,13 @@ export const useHackernewsTopItems = (store: MyStore) => {
     store.dispatch(`${NS_HACKERNEWS}/${A_FETCH_TOP_ITEM_IDS}`);
   });
 
-  return { topIds, topItems, loadMore };
+  return { ids, items, loadMore };
 };
 
 export const useHackernewsNewestItems = (store: MyStore) => {
-  const newestIds = computed(() => store.state.hackernews.newestIds);
+  const ids = computed(() => store.state.hackernews.newestIds);
 
-  const newestItems = computed(() => {
+  const items = computed(() => {
     return store.getters[`${NS_HACKERNEWS}/${G_GET_NEWEST_ITEMS}`] as {
       [key: number]: Item;
     };
@@ -51,7 +51,7 @@ export const useHackernewsNewestItems = (store: MyStore) => {
   const loadMore = (lastRenderedItem: number) => {
     const itemsToLoad = 50;
 
-    const idsToFetch = newestIds.value.filter(
+    const idsToFetch = ids.value.filter(
       (_, index: number) =>
         index >= lastRenderedItem && index < lastRenderedItem + itemsToLoad
     );
@@ -63,7 +63,7 @@ export const useHackernewsNewestItems = (store: MyStore) => {
     store.dispatch(`${NS_HACKERNEWS}/${A_FETCH_NEWEST_ITEM_IDS}`);
   });
 
-  return { newestIds, newestItems, loadMore };
+  return { ids, items, loadMore };
 };
 
 export const useHackernewsGetCurrentDetails = (
