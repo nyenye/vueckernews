@@ -1,4 +1,4 @@
-import { Module, MutationTree, Mutation } from "vuex";
+import { MutationTree, Mutation } from "vuex";
 import { Item, HackernewsState, RootState } from "@/types";
 
 import {

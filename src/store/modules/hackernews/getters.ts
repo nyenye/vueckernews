@@ -1,4 +1,4 @@
-import { Module, GetterTree, Getter } from "vuex";
+import { GetterTree, Getter } from "vuex";
 import { Item, HackernewsState, RootState, Dictionary } from "@/types";
 
 import { G_GET_TOP_ITEMS, G_GET_NEWEST_ITEMS } from "@/store/getters";
