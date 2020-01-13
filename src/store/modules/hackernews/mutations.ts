@@ -26,9 +26,14 @@ const setItem: Mutation<HackernewsState> = (
   state: HackernewsState,
   itemToSet: Item
 ): void => {
+  const descendants: number =
+    state.items[itemToSet.id] !== undefined
+      ? state.items[itemToSet.id]!.descendants
+      : itemToSet.children.length;
+
   state.items = {
     ...state.items,
-    [itemToSet.id]: { ...itemToSet }
+    [itemToSet.id]: { ...itemToSet, descendants }
   };
 };
 
