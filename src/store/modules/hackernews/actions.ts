@@ -51,9 +51,7 @@ const fetchTopItemIds: ActionHandler<HackernewsState, RootState> = (
       const idsToFetch = ids.slice(0, 50);
       dispatch(A_FETCH_ITEMS_BY_IDS, idsToFetch, { root: false });
     })
-    .catch(err => {
-      console.log(err);
-    })
+    .catch(err => {})
     .finally();
 };
 
@@ -72,9 +70,7 @@ const fetchNewestItemIds: ActionHandler<HackernewsState, RootState> = (
       const idsToFetch = ids.slice(0, 50);
       dispatch(A_FETCH_ITEMS_BY_IDS, idsToFetch, { root: false });
     })
-    .catch(err => {
-      console.log(err);
-    })
+    .catch(err => {})
     .finally();
 };
 
@@ -105,9 +101,7 @@ const fetchItemById: ActionHandler<HackernewsState, RootState> = (
       commit(M_SET_ITEM, item, { root: false });
       commit(M_SET_CURRENT_DETAILS, state.items[idToFetch], { root: false });
     })
-    .catch(err => {
-      console.log(err);
-    })
+    .catch(err => {})
     .finally();
 };
 
@@ -141,9 +135,7 @@ const fetchItemsByIds: ActionHandler<HackernewsState, RootState> = (
 
       commit(M_SET_ITEMS, items, { root: false });
     })
-    .catch(err => {
-      console.log(err);
-    })
+    .catch(err => {})
     .finally();
 };
 
